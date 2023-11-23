@@ -230,15 +230,16 @@ struct PoisonPotion : Potion {
 // - the `health` should be 100
 
 class Warrior : Player {
-    var name: String
+    var name: String = ""
     
     var health: Int = 100
     
     var chest: Chest
     
-    init(name: String) {
+    init(name: String,_ chest: Chest) {
         self.name = name
-       
+        
+        self.chest = chest
     }
     
     func attack<P>(_ player: P) where P : Player {
@@ -278,9 +279,10 @@ class Wizard : Player {
     
     var chest: Chest
     
-    init(name: String) {
+    init(name: String, _ chest: Chest) {
         self.name = name
        
+        self.chest = chest
     }
     
     func attack<P>(_ player: P) where P : Player {
@@ -308,24 +310,24 @@ class Wizard : Player {
 }
 
 
-//// use the following code to demonstrate the usage of your solution:
-//let warrior = Warrior(name: "Aragon")
-//let wizard = Wizard(name: "Gandalf")
-//
-//// Add items to Warrior's chest
-//warrior.chest.items.append(Sword())
-//warrior.chest.items.append(HealthPotion())
-//warrior.chest.items.append(PoisonPotion())
-//
-//// Add items to Wizard's chest
-//wizard.chest.items.append(Wond())
-//wizard.chest.items.append(HealthPotion())
-//wizard.chest.items.append(PoisonPotion())
-//
-//// Simulating a battle
-//print("Initial Health - Warrior: \(warrior.health), Wizard: \(wizard.health)")
-//wizard.attack(warrior)
-//warrior.splash(wizard)
-//warrior.heal()
-//print("After Battle - Warrior: \(warrior.health), Wizard: \(wizard.health)")
+// use the following code to demonstrate the usage of your solution:
+let warrior = Warrior(name: "Aragon", Chest.init(items: []))
+let wizard = Wizard(name: "Gandalf", Chest.init(items: []))
+
+// Add items to Warrior's chest
+warrior.chest.items.append(Sword())
+warrior.chest.items.append(HealthPotion())
+warrior.chest.items.append(PoisonPotion())
+
+// Add items to Wizard's chest
+wizard.chest.items.append(Wand())
+wizard.chest.items.append(HealthPotion())
+wizard.chest.items.append(PoisonPotion())
+
+// Simulating a battle
+print("Initial Health - Warrior: \(warrior.health), Wizard: \(wizard.health)")
+wizard.attack(warrior)
+warrior.splash(wizard)
+warrior.heal()
+print("After Battle - Warrior: \(warrior.health), Wizard: \(wizard.health)")
 
