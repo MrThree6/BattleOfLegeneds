@@ -242,20 +242,24 @@ class Warrior : Player {
     }
     
     func attack<P>(_ player: P) where P : Player {
-        for item in chest.items where item is Sword {
-            
+        for item in chest.items where item is Weapon {
+           let weapon = item as? Weapon
+                weapon?.attack(player)
         }
     }
     
     func splash<P>(_ player: P) where P : Player {
         for item in chest.items where item is PoisonPotion{
-            <#body#>
+            let potion = item as? PoisonPotion
+            potion?.splash(player)
         }
     }
     
     func heal() {
         for item in chest.items where item is HealthPotion {
-            <#body#>
+            let potion = item as? HealthPotion
+            potion?.splash(self)
+
         }
     }
     
@@ -280,20 +284,23 @@ class Wizard : Player {
     }
     
     func attack<P>(_ player: P) where P : Player {
-        for item in chest.items where item is Wand {
-            <#body#>
+        for item in chest.items where item is Weapon {
+            let weapon = item as? Weapon
+                 weapon?.attack(player)
         }
     }
     
     func splash<P>(_ player: P) where P : Player {
         for item in chest.items where item is PoisonPotion{
-            <#body#>
+            let potion = item as? PoisonPotion
+            potion?.splash(player)
         }
     }
     
     func heal() {
         for item in chest.items where item is HealthPotion {
-            <#body#>
+            let potion = item as? HealthPotion
+            potion?.splash(self)
         }
     }
     
